@@ -19,18 +19,27 @@ key = "api-key=57a53bc0e5186e9d1ae82fbeed6b3238:7:72493178"
 # br.submit()
 # print "----- Login success -----"
 
+pagestart = 0
+
 print "----- Begin the crawl -----"
-for i in range(0, 1):
+for i in range(pagestart, 10):
     querysrc = [opening, startdate, enddate, page+str(i), key]
     query = "&".join(querysrc)
     print "----- " + query + " -----"
     jstrs = urllib2.urlopen(query).read()
     t = jstrs.strip('()')
     tss= json.loads( t )  # error no joson object
-    print "PAGE: " + str(i)
+    print "PAGE: " + str(i) + "   started from " + str(pagestart)
     for item in tss['response']['docs']:
-        print item['web_url']
-        print item['lead_paragraph']
+        # print item['web_url']
+        print "Headline: " + item['headline']['main']
+        print "Content: " + item['lead_paragraph']
+        print "Date: " + item['pub_date']
+        print "Word count: " + item['word_count']
+        print "Subsection: " + str(item['subsection_name'])
+        for kw in item['keywords']:
+            print kw['name']
+            print kw['value']
         sleep(2)
         print
         # br.open(item['web_url'])

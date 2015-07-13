@@ -1,0 +1,2 @@
+http://weblab.com.cityu.edu.hk/blog/chengjun/scraping-new-york-times-using-python/
+http://gdeltproject.org/data.html#documentation
